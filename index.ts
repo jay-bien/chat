@@ -3,4 +3,5 @@ import './style.css';
 
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
-appDiv.innerHTML = `<h1>TypeScript Starter</h1>`;
+const titleDiv: HTMLElement = document.getElementById('title');
+titleDiv.innerHTML = `<h1>Delphi</h1>`;
