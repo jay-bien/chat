@@ -1,6 +1,8 @@
 // Import stylesheets
 import './style.css';
 
+import { LOADER_INTERVAL } from './constants';
+
 // Write TypeScript code!
 const appDiv: HTMLElement = document.getElementById('app');
 const titleDiv: HTMLElement = document.getElementById('title');
@@ -16,5 +18,5 @@ function ellipseSpinner(el) {
   const timer: ReturnType<typeof setInterval> = setInterval(() => {
     el.textContent += '.';
     if (el.textContent === '....') el.textContent = '';
-  }, 250);
+  }, LOADER_INTERVAL);
 }
