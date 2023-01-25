@@ -10,12 +10,14 @@ const chatContainer: HTMLElement = document.querySelector('#chat_container');
 
 /* sanity checks */
 titleDiv.innerHTML = `<h1>Delphi</h1>`;
-ellipseSpinner(chatContainer);
+
 let div = document.createElement('div');
-chatContainer.appendChild(div);
-type(div, 'Let there be light.');
-let id = generateUniqueId();
-titleDiv.innerHTML += id;
+chatContainer.innerHTML += chatBar(false, 'hello there', '' + 12);
+let newResponse = chatBar(false, 'Hello human', generateUniqueId());
+chatContainer.innerHTML += newResponse;
+/* eo sanity checks */
+
+//listen for user input submission
 form.addEventListener(
   'submit',
   (e) => {
@@ -32,10 +34,7 @@ form.addEventListener(
   },
   false
 );
-
-let newResponse = chatBar(false, 'Hello human', generateUniqueId());
-chatContainer.innerHTML += newResponse;
-/* eo sanity checks */
+//eo listen for user input submission
 
 //generate loading indicator and render to passed in el
 function ellipseSpinner(el: HTMLElement): ReturnType<typeof setInterval> {
@@ -70,6 +69,7 @@ function generateUniqueId(): string {
   return id;
 }
 
+//generate chat block for user or bot
 function chatBar(isUser: boolean, val: string, id: string): string {
   //todo add ability to choose name and avatar by user
   const bar = `
@@ -79,10 +79,10 @@ function chatBar(isUser: boolean, val: string, id: string): string {
       <div id="${id}" class="chat_message" >${val}</div>
     </div>
   </div>`;
-
   return bar;
 }
 
+//handle user query submission
 async function onFormSubmit(e: SubmitEvent | KeyboardEvent) {
   e.preventDefault();
 
