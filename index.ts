@@ -5,7 +5,7 @@ import { LOADER_INTERVAL, TYPE_SPEED, BOT_NAME } from './constants';
 
 const appDiv: HTMLElement = document.getElementById('app');
 const titleDiv: HTMLElement = document.getElementById('title');
-const form = document.querySelector('form');
+const form: HTMLFormElement = document.querySelector('form');
 const chatContainer: HTMLElement = document.querySelector('#chat_container');
 
 /* sanity checks */
@@ -16,6 +16,13 @@ chatContainer.appendChild(div);
 type(div, 'Let there be light.');
 let id = generateUniqueId();
 titleDiv.innerHTML += id;
+form.addEventListener(
+  'submit',
+  (e) => {
+    onFormSubmit(e);
+  },
+  false
+);
 
 let newResponse = chatBar(false, 'Hello human', generateUniqueId());
 chatContainer.innerHTML += newResponse;
@@ -65,4 +72,13 @@ function chatBar(isUser: boolean, val: string, id: string): string {
   </div>`;
 
   return bar;
+}
+
+async function onFormSubmit(e: SubmitEvent) {
+  e.preventDefault();
+
+  const data = new FormData(form);
+  console.log({ e });
+  console.log(e.target);
+  console.log({ data });
 }
