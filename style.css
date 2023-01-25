@@ -1,5 +1,4 @@
 :root {
-  --dark-bg: #03001c;
   --base00: #292d3e;
   --base01: #444267;
   --base02: #32374d;
@@ -37,4 +36,8 @@ body {
   display: flex;
   flex-direction: row;
   background-color: var(--base01);
+}
+textarea {
+  background-color: var(--base00);
+  border: 1px solid var(--base0E);
 }
