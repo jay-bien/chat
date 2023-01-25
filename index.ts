@@ -23,6 +23,15 @@ form.addEventListener(
   },
   false
 );
+form.addEventListener(
+  'keyup',
+  (e) => {
+    if (e.key !== 'Enter') return;
+    onFormSubmit(e);
+    alert('Pressed enter');
+  },
+  false
+);
 
 let newResponse = chatBar(false, 'Hello human', generateUniqueId());
 chatContainer.innerHTML += newResponse;
@@ -74,10 +83,23 @@ function chatBar(isUser: boolean, val: string, id: string): string {
   return bar;
 }
 
-async function onFormSubmit(e: SubmitEvent) {
+async function onFormSubmit(e: SubmitEvent | KeyboardEvent) {
   e.preventDefault();
 
   const data = new FormData(form);
+  const prompt = data.get('chat_input').toString();
+
+  if (!prompt || !prompt.length) return;
+  chatContainer.innerHTML += chatBar(true, prompt, generateUniqueId());
+  form.reset();
+
+  // bot response
+  const id = generateUniqueId();
+  chatContainer.innerHTML += chatBar(false, '.', id);
+  const responseDiv: HTMLDivElement = document.querySelector(`#${id}`);
+  ellipseSpinner(responseDiv);
+
+  console.log(data.get('chat_input'));
   console.log({ e });
   console.log(e.target);
   console.log({ data });
