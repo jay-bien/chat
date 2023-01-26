@@ -15,8 +15,16 @@
   --base0D: #82aaff;
   --base0E: #c792ea;
   --base0F: #ff5370;
-}
 
+  --max-width: 1300px;
+
+  --pad-xs: 0.2em;
+  --pad-sm: 0.5em;
+  --pad-m: 1em;
+}
+#app {
+  max-width: var(--max-width);
+}
 body {
   background-color: var(--base00);
   color: var(--base08);
@@ -24,7 +32,12 @@ body {
 #title {
   color: var(--base0F);
 }
-
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90vh;
+}
 .chat_container {
   display: flex;
   flex-direction: column;
@@ -37,7 +50,37 @@ body {
   flex-direction: row;
   background-color: var(--base01);
 }
+form {
+  display: flex;
+  flex-direction: row;
+}
 textarea {
+  flex: 1;
+  padding: var(--pad-m);
   background-color: var(--base00);
-  border: 1px solid var(--base0E);
+  color: var(--base08);
+  border-top-left-radius: var(--pad-m);
+  border-bottom-left-radius: var(--pad-m);
+  border-color: var(--base0E);
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-bottom: 1px solid;
+}
+
+button {
+  background-color: var(--base08);
+  padding: var(--pad-sm) var(--pad-m);
+  color: var(--base07);
+  border-top-right-radius: var(--pad-m);
+  border-bottom-right-radius: var(--pad-m);
+  border-color: var(--base08);
+  border-top: 1px solid;
+  border-right: 1px solid;
+  border-bottom: 1px solid;
+
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+button:hover {
+  background-color: var(--base09);
+  cursor: pointer;
 }
